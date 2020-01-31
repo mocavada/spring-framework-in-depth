@@ -33,6 +33,7 @@ public class AppConfig {
         public Worker(String preamble, String text) {
             this.preamble = preamble;
             this.text = text;
+            System.out.println("New Instance");
         }
 
         public void execute() {
@@ -41,7 +42,9 @@ public class AppConfig {
     }
 
     @Bean
+    @Scope("prototype")
     public Worker worker() {
+
         return new Worker(greetingPreamble,greetingText);
     }
 
@@ -72,5 +75,7 @@ public class AppConfig {
 
         Worker worker = context.getBean(Worker.class);
         worker.execute();
+        Worker worker1 = context.getBean(Worker.class);
+        worker1.execute();
     }
 }
