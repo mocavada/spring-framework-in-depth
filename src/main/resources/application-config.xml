@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="productRepository" class="com.mocavada.app.data.repository.ProductRepository"/>
+    <bean id="bookItemRepository" class="com.mocavada.app.data.repository.xml.BookItemRepository"/>
+    <bean id="webOrderRepository" class="com.mocavada.app.data.repository.xml.WebOrderRepository"/>
+
+    <bean id="customerRepository" class="com.mocavada.app.data.repository.CustomerRepository"/>
+
+    <bean id="bookService" class="com.mocavada.app.service.xml.impl.BookServiceImpl">
+        <constructor-arg ref="bookItemRepository"/>
+    </bean>
+
+    <bean id="cartService" class="com.mocavada.app.service.xml.impl.CartServiceImpl">
+        <constructor-arg name="bookService" ref="bookService"/>
+        <constructor-arg name="customerRepository" ref="customerRepository"/>
+        <constructor-arg name="webOrderRepository" ref="webOrderRepository"/>
+    </bean>
+
+</beans>

@@ -1,6 +1,7 @@
 package com.mocavada.app.data.repository;
 
+
 import org.springframework.stereotype.Repository;
 
-public class CustomerRepository {
+public class ProductRepository {
 }
